@@ -53,7 +53,7 @@ def calc_distances(x0, y0, X):
 
 # Marian Alejandra Herrera Ayala A00227534 (saalej)
 # importar datos
-df = pd.read_csv("iris1.csv")
+df = pd.read_csv("iris.csv")
 
 # adecuar datos
 clases = ["Iris-versicolor", "Iris-virginica", "Iris-setosa"]
