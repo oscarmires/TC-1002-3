@@ -6,6 +6,7 @@ Autores:   Oscar Miranda Escalante A01630791 (oscarmires)
            Ana Paola Tirado Gonzalez (Paola-Tirado)
            Roberto López Cisneros A01637335 (RobertMex)
            Marian Alejandra Herrera Ayala A00227534 (saalej)
+           José Miguel Figarola Prado A01632557 (josefigarola)
 Ultima fecha actualizacion: 29 Octubre 2020
 """
 
@@ -41,6 +42,11 @@ def clasificacion_knn(X, y, px, py, k=False):
         plt.scatter(X[nearest_neighbors[i], 0], X[nearest_neighbors[i], 1], color="yellow", s=20)
     graphPoints(X, y)
     return mode_knn
+
+# José Miguel Figarola Prado A01632557 (josefigarola)
+def euclidean_distance(x0, y0, x1, y1):
+    # Calcula la distancia entre dos puntos
+    return ((x1 - x0) ** 2 + (y1 - y0) ** 2) ** 0.5
 
 # Rodrigo Morales Aguayo A01632834 (ROmorales08)
 # genera un arreglo con las distancias entre un punto y todos los puntos de X
