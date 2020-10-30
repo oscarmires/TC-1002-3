@@ -1,9 +1,11 @@
+#Proyecto implementación de algoritmo KNN
+#Rodrigo Morales Aguayo A01632834
+
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
 from statistics import mode
 
-#Rodrigo Morales
 def calc_distances(x0, y0, X):
     # genera un arreglo con las distancias entre un punto y todos los puntos de X
     distances = []
