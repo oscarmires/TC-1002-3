@@ -1,15 +1,31 @@
 # Proyecto: implementación de algoritmo KNN
-
-
+#Autores:   Oscar Miranda Escalante A01630791 (oscarmires)
+#           Rodrigo Morales Aguayo A01632834 (ROmorales08)
+#           Ana Paola Tirado Gonzalez (Paola-Tirado)
+#           Roberto López Cisneros A01637335 (RobertMex)
+#Ultima fecha actualizacion: 29 Octubre 2020
 
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
 from statistics import mode
 
+#Roberto López Cisneros A01637335 (RobertMex)
+# Grafica los puntos y los puntos proyectados
+def graphPoints(X, y):  
+    for i in range(X.shape[0]):
+        p = X[i, 0:2]
+        if y[i] == 0:
+            plt.scatter(p[0], p[1], color="red", s=4)
+        elif y[i] == 1:
+            plt.scatter(p[0], p[1], color="black", s=4)
+        elif y[i] == 2:
+            plt.scatter(p[0], p[1], color="blue", s=4)
+    plt.show()
+
 # Oscar Miranda Escalante A01630791 (oscarmires)
+# devuelve la clase a la que pertenece el punto
 def clasificacion_knn(X, y, px, py, k=False):
-    # devuelve la clase a la que pertenece el punto
     if not k:
         k = int(len(X) ** 0.5)
     nearest_neighbors = calc_distances(px, py, X).argsort()[0:k]
@@ -23,14 +39,13 @@ def clasificacion_knn(X, y, px, py, k=False):
     return mode_knn
 
 # Rodrigo Morales Aguayo A01632834 (ROmorales08)
+# genera un arreglo con las distancias entre un punto y todos los puntos de X
 def calc_distances(x0, y0, X):
-    # genera un arreglo con las distancias entre un punto y todos los puntos de X
     distances = []
     for i in range(X.shape[0]):
         point = X[i, 0:2]
         distances.append(euclidean_distance(x0, y0, point[0], point[1]))
     return np.array(distances)
-
 
 #Ana Paola Tirado Gonzalez (Paola-Tirado)
 # nuevo punto para clasificar
