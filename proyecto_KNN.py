@@ -30,3 +30,12 @@ def calc_distances(x0, y0, X):
         point = X[i, 0:2]
         distances.append(euclidean_distance(x0, y0, point[0], point[1]))
     return np.array(distances)
+
+#Ana Paola Tirado Gonzalez (Paola-Tirado)
+# adecuar datos
+clases = ["Iris-versicolor", "Iris-virginica", "Iris-setosa"]
+df["Tipo_Flor"] = df["Tipo_Flor"].replace(clases, [0, 1, 2])
+data = df.values
+X = data[:, 0:-1]
+y = data[:, -1]
+y = y.astype('int32')
