@@ -2,7 +2,7 @@ from sklearn import tree
 import pandas as pd
 import numpy as np
 
-iris1 = pd.read_csv("iris1.csv")
+iris1 = pd.read_csv("iris.csv")
 iris2 = pd.read_csv("iris2.csv")
 
 iris1["Tipo_Flor"] = iris1["Tipo_Flor"].replace(["Iris-versicolor", "Iris-virginica", "Iris-setosa"], [0, 1, 2])

@@ -14,6 +14,9 @@ import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
 from statistics import mode
+from sklearn.manifold import Isomap
+from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
+from sklearn.decomposition import PCA
 
 #Roberto López Cisneros A01637335 (RobertMex)
 # Grafica los puntos y los puntos proyectados
@@ -23,7 +26,7 @@ def graphPoints(X, y):
         if y[i] == 0:
             plt.scatter(p[0], p[1], color="red", s=4)
         elif y[i] == 1:
-            plt.scatter(p[0], p[1], color="black", s=4)
+            plt.scatter(p[0], p[1], color="green", s=4)
         elif y[i] == 2:
             plt.scatter(p[0], p[1], color="blue", s=4)
     plt.show()
@@ -39,7 +42,7 @@ def clasificacion_knn(X, y, px, py, k=False):
     print("Moda: ", mode_knn)
     plt.scatter(px, py, color="black", marker='^', s=30)
     for i in range(k):
-        plt.scatter(X[nearest_neighbors[i], 0], X[nearest_neighbors[i], 1], color="yellow", s=20)
+        plt.scatter(X[nearest_neighbors[i], 0], X[nearest_neighbors[i], 1], color="yellow", s=30)
     graphPoints(X, y)
     return mode_knn
 
@@ -59,7 +62,7 @@ def calc_distances(x0, y0, X):
 
 # Marian Alejandra Herrera Ayala A00227534 (saalej)
 # importar datos
-df = pd.read_csv("iris.csv")
+df = pd.read_csv("TC-1002-3/iris.csv")
 
 # adecuar datos
 clases = ["Iris-versicolor", "Iris-virginica", "Iris-setosa"]
@@ -69,8 +72,28 @@ X = data[:, 0:-1]
 y = data[:, -1]
 y = y.astype('int32')
 
+nuevo_punto = [[6.2, 3.3, 4, 1.4]]
+
+lda = LinearDiscriminantAnalysis(n_components=2)
+lda.fit(X, y)
+nuevo_punto_lda = lda.transform(nuevo_punto)
+Xlda = lda.transform(X)
+
+pca = PCA(n_components=2)
+pca.fit(X, y)
+nuevo_punto_pca = pca.transform(nuevo_punto)
+Xpca = pca.transform(X)
+
+iso = Isomap(n_components=2)
+iso.fit(X, y)
+nuevo_punto_iso = iso.transform(nuevo_punto)
+Xiso = iso.transform(X)
+
 #Ana Paola Tirado Gonzalez (Paola-Tirado)
 # nuevo punto para clasificar
-nuevo_punto = [5.0, 3.3]
-clase_resultado = clasificacion_knn(X, y, nuevo_punto[0], nuevo_punto[1])
-print("Tipo de flor del nuevo dato:", clases[clase_resultado])
+clase_resultado_lda = clasificacion_knn(Xlda, y, nuevo_punto_lda[0][0], nuevo_punto_lda[0][1])
+clase_resultado_pca = clasificacion_knn(Xpca, y, nuevo_punto_pca[0][0], nuevo_punto_pca[0][1])
+clase_resultado_iso = clasificacion_knn(Xiso, y, nuevo_punto_iso[0][0], nuevo_punto_iso[0][1])
+print("Tipo de flor del nuevo dato (LDA):", clases[clase_resultado_lda])
+print("Tipo de flor del nuevo dato (PCA):", clases[clase_resultado_pca])
+print("Tipo de flor del nuevo dato (Isomap):", clases[clase_resultado_iso])
