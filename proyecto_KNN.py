@@ -7,7 +7,6 @@ Autores:   Oscar Miranda Escalante A01630791 (oscarmires)
            Roberto López Cisneros A01637335 (RobertMex)
            Marian Alejandra Herrera Ayala A00227534 (saalej)
            José Miguel Figarola Prado A01632557 (josefigarola)
-Ultima fecha actualizacion: 29 Octubre 2020
 """
 
 import numpy as np
@@ -91,6 +90,7 @@ Xiso = iso.transform(X)
 
 #Ana Paola Tirado Gonzalez (Paola-Tirado)
 # nuevo punto para clasificar
+# clasificación recibe argumentos: todos los puntos (X), todas las clases (y), coordx nuevo punto, coordy nuevo punto
 clase_resultado_lda = clasificacion_knn(Xlda, y, nuevo_punto_lda[0][0], nuevo_punto_lda[0][1])
 clase_resultado_pca = clasificacion_knn(Xpca, y, nuevo_punto_pca[0][0], nuevo_punto_pca[0][1])
 clase_resultado_iso = clasificacion_knn(Xiso, y, nuevo_punto_iso[0][0], nuevo_punto_iso[0][1])
